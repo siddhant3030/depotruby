@@ -1,3 +1,6 @@
+from operator import truediv
+
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -62,13 +65,33 @@ class LinkedList:
             self.tail = None 
         return temp
 
-    # def get(self, index):
-    #     if index < 0 or index >= self.length:
-    #         return None
-    #     temp = self.head
-    #     for _ in range(index):
-    #         temp = temp.next
-    #     return temp
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
 
     def set_value(self, index, value):
         temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
+    def insert_node_value(self, index, value):
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.get(index - 1)
+        #the temp will point this to next node of the newly added node
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+        
