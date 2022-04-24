@@ -94,4 +94,17 @@ class LinkedList:
         temp.next = new_node
         self.length += 1
         return True
-        
+    
+    def reverse(self):
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+
+        after = temp.next
+        before = None
+
+        for _ in range(self.length):
+             after = temp.next
+             temp.next = before
+             before = temp
+             temp = after
