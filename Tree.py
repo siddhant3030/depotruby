@@ -1,29 +1,36 @@
+#create new_node
+# if root == None then root == new_node
+# temp = self.root
+# while loop
+#   if new_node == temp return false
+#   if < left else > right
+#   if none insert new_node else move to next
+
+class Node(object):
+    def __init__(self, val, left, right):
+        self.val = val
+        self.left = left
+        self.right = right
+
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        def dfs(root, depth):
-            if not root: return depth
-            return max(dfs(root.left, depth + 1), dfs(root.right, depth + 1))
-                       
-        return dfs(root, 0)
+    def insert(self, value):
+        new_node = Node(value)
+        if self.root is None:
+            self.root = new_node
+            return True
+        temp = self.root
 
+        while (True):
+            if new_node.value == temp.value:
+                return False
 
-    def maxDepth(self, root: TreeNode) -> int:
-    
-        if not root: return 0
-    
-        queue = [(root, 1)]
-        self.res = 0
-    
-        while queue:
-            root, nums = queue.pop(0)
-        
-            if not root.left and not root.right:
-                self.res = max(self.res, nums)
-            
-            if root.left:
-                queue.append((root.left, nums + 1))
-            
-            if root.right:
-                queue.append((root.right, nums + 1))
-            
-        return self.res
+            if new_node.value < temp.value:
+                if temp.left is None:
+                    temp.left = new_node
+                    return True
+                temp = temp.left
+            else:
+                if temp.right is None:
+                    temp.right = new_node
+                    return True
+                temp = temp.right

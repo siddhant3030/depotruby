@@ -1,9 +1,3 @@
-# DFS GRAPH
-
-# We will start by putting any one of the graph's vertex on top of the stack.
-# After that take the top item of the stack and add it to the visited list of the vertex.
-# Next, create a list of that adjacent node of the vertex. Add the ones which aren't in the visited list of vertexes to the top of the stack.
-# Lastly, keep repeating steps 2 and 3 until the stack is empty.
 
 class Node(object):
     def __init__(self, val=0, left=None, right=None):
