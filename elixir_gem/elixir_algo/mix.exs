@@ -41,7 +41,11 @@ defmodule ElixirAlgo.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      # {:matrex, "~> 0.6.8"},
+      {:heap, "~> 2.0"},
+      {:arrays, "~> 2.0"},
+      {:okasaki, "~> 1.0.0"}
     ]
   end
 
