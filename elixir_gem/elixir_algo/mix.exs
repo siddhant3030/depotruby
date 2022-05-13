@@ -45,7 +45,8 @@ defmodule ElixirAlgo.MixProject do
       # {:matrex, "~> 0.6.8"},
       {:heap, "~> 2.0"},
       {:arrays, "~> 2.0"},
-      {:okasaki, "~> 1.0.0"}
+      {:okasaki, "~> 1.0.0"},
+      {:nx, "~> 0.2"}
     ]
   end
 
