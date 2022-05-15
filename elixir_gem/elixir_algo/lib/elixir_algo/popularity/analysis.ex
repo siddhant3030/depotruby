@@ -5,10 +5,11 @@ defmodule PopularityAnalysis do
 
   def identify_titles(scores) do
     increasing = decreasing = true
+
     {increasing, decreasing} =
-      0..Arrays.size(scores)-2
-      |> Enum.reduce({increasing, decreasing}, fn(i, {increasing, decreasing}) ->
-        check(scores[i], scores[i+1], increasing, decreasing)
+      0..(Arrays.size(scores) - 2)
+      |> Enum.reduce({increasing, decreasing}, fn i, {increasing, decreasing} ->
+        check(scores[i], scores[i + 1], increasing, decreasing)
       end)
 
     increasing or decreasing
@@ -16,13 +17,13 @@ defmodule PopularityAnalysis do
 end
 
 # Driver code
-IO.puts "-----------------------------"
-IO.puts "PROGRAM OUTPUT:"
+IO.puts("-----------------------------")
+IO.puts("PROGRAM OUTPUT:")
 
 movie_ratings = [
-  Arrays.new([1,2,2,3]),
-  Arrays.new([4,5,6,3,4]),
-  Arrays.new([8,8,7,6,5,4,4,1]),
+  Arrays.new([1, 2, 2, 3]),
+  Arrays.new([4, 5, 6, 3, 4]),
+  Arrays.new([8, 8, 7, 6, 5, 4, 4, 1])
 ]
 
 movie_ratings
@@ -30,6 +31,7 @@ movie_ratings
   cond do
     PopularityAnalysis.identify_titles(movie_rating) ->
       IO.puts("Title Identified and Separated")
+
     true ->
       IO.puts("Title Score Fluctuating")
   end

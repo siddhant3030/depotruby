@@ -1,6 +1,7 @@
 defmodule Mnist do
   import Nx.Defn
-  def load()do
+
+  def load() do
     b = File.read!("/Users/siddhant/downloads/train-images-idx3-ubyte.gz") |> :zlib.gunzip()
     <<_::32, n_images::32, n_rows::32, n_col::32, images::binary>> = b
 
@@ -8,7 +9,7 @@ defmodule Mnist do
       images
       |> Nx.from_binary({:u, 8})
       |> Nx.reshape({n_images, n_rows, n_col})
-      |> Nx.to_heatmap
+      |> Nx.to_heatmap()
 
     images =
       images

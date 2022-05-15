@@ -7,10 +7,6 @@
 
 # Let’s understand this better with an illustration:
 
-
-
-
-
 # Solution#
 # We will assume that ‘x’ is the median age of a user in a list. Half of the ages in the list will be smaller than (or equal to) ‘x’, and the other half will be greater than (or equal to) ‘x’. We can divide the list into two halves: one half to store the smaller numbers (say smallList), and one half to store the larger numbers (say largeList). The median of all ages will either be the largest number in the smallList or the smallest number in the largeList. If the total number of elements is even, we know that the median will be the average of these two numbers. The best data structure for finding the smallest or largest number among a list of numbers is a Heap.
 
@@ -40,14 +36,25 @@ defmodule MedianOfAges do
 
     cond do
       Heap.size(obj.max_heap) > Heap.size(obj.min_heap) + 1 ->
-        max = obj.max_heap |> Heap.root
-        %__MODULE__{obj | max_heap: obj.max_heap |> Heap.pop, min_heap: obj.min_heap |> Heap.push(-max)}
+        max = obj.max_heap |> Heap.root()
+
+        %__MODULE__{
+          obj
+          | max_heap: obj.max_heap |> Heap.pop(),
+            min_heap: obj.min_heap |> Heap.push(-max)
+        }
 
       Heap.size(obj.max_heap) < Heap.size(obj.min_heap) ->
-        min = obj.min_heap |> Heap.root
-        %__MODULE__{obj | min_heap: obj.min_heap |> Heap.pop, max_heap: obj.max_heap |> Heap.push(-min)}
+        min = obj.min_heap |> Heap.root()
 
-      true -> obj
+        %__MODULE__{
+          obj
+          | min_heap: obj.min_heap |> Heap.pop(),
+            max_heap: obj.max_heap |> Heap.push(-min)
+        }
+
+      true ->
+        obj
     end
   end
 
@@ -65,17 +72,18 @@ defmodule MedianOfAges do
 end
 
 # Driver code
-IO.puts "-----------------------------"
-IO.puts "PROGRAM OUTPUT:"
+IO.puts("-----------------------------")
+IO.puts("PROGRAM OUTPUT:")
 
-median_age = MedianOfAges.init
+median_age = MedianOfAges.init()
+
 median_age =
   median_age
   |> MedianOfAges.insert_age(22)
   |> MedianOfAges.insert_age(35)
 
-IO.puts "The recommended content will be for ages under: #{MedianOfAges.find_median(median_age)}"
+IO.puts("The recommended content will be for ages under: #{MedianOfAges.find_median(median_age)}")
 median_age = median_age |> MedianOfAges.insert_age(30)
-IO.puts "The recommended content will be for ages under: #{MedianOfAges.find_median(median_age)}"
+IO.puts("The recommended content will be for ages under: #{MedianOfAges.find_median(median_age)}")
 median_age = median_age |> MedianOfAges.insert_age(25)
-IO.puts "The recommended content will be for ages under: #{MedianOfAges.find_median(median_age)}"
+IO.puts("The recommended content will be for ages under: #{MedianOfAges.find_median(median_age)}")
