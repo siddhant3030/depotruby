@@ -10,7 +10,7 @@ defmodule Luhn do
     cond do
       not Regex.match?(~r/^[0-9]+$/, number) -> false
       String.length(number) < 2 -> false
-      true -> convert(number)
+      true -> convert(number) |> rem(10) == 0
     end
   end
 
@@ -22,10 +22,8 @@ defmodule Luhn do
     |> Enum.reduce(0, fn {number, index}, acc ->
       if rem(index + 1, 2) == 0 do
         acc + double(number)
-        # IO.inspect(acc)
       else
         acc + number
-        IO.inspect(acc)
       end
     end)
   end
