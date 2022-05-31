@@ -10,6 +10,7 @@ defmodule ElixirAlgo.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
+      escript: [main_module: ElixirAlgo.CLI],
       deps: deps()
     ]
   end
@@ -46,7 +47,9 @@ defmodule ElixirAlgo.MixProject do
       {:heap, "~> 2.0"},
       {:arrays, "~> 2.0"},
       {:okasaki, "~> 1.0.0"},
-      {:nx, "~> 0.2"}
+      {:nx, "~> 0.2"},
+      {:poison, "~> 5.0"},
+      {:prompt, "~> 0.5"}
     ]
   end
 
