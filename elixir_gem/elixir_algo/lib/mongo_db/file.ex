@@ -22,6 +22,18 @@ defmodule ElixirAlgo.MongoFile do
     Logger.debug("Filter by Values: #{result}")
   end
 
+  def delete_the_record() do
+    a = File.read!("../hello")
+    |> Poison.decode!()
+
+    c = Enum.each(a,fn {key, _value} -> remove(a, key) end)
+    IO.inspect(c)
+  end
+
+  def remove(map, key) do
+    Map.delete(map, key)
+  end
+
 
   # def particular_field(_f) do
   #   result = File.read!("../hello")
